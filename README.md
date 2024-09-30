@@ -1,47 +1,24 @@
-# Graphical-calculator-
-The provided code is a simple implementation of a graphical calculator using the Tkinter library in Python.The calculator has a basic user interface with a single entry field at the top and a 4x4 grid of buttons below it. The buttons represent digits from 0 to 9, four basic arithmetic operations (+, -, *, /), and an equals sign (=).
-import tkinter as tk
+Project Description:
 
-class Calculator:
-    def __init__(self, master):
-        self.master = master
-        master.title("Calculator")
-        master.configure(background="#ADD8E6")  
+The provided code is a simple implementation of a graphical calculator using the Tkinter library in Python. The calculator has a basic user interface with a single entry field at the top and a 4x4 grid of buttons below it. The buttons represent digits from 0 to 9, four basic arithmetic operations (+, -, *, /), and an equals sign (=).
 
-        self.entry = tk.Entry(master, width=20, font=("Arial", 18), relief="sunken")
-        self.entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+Features:
 
-        buttons = [
-            '7', '8', '9', '/',
-            '4', '5', '6', '*',
-            '1', '2', '3', '-',
-            '0', '.', '=', '+'
-        ]
+Here are the key features of this calculator project:
 
-        row_val = 1
-        col_val = 0
+User Interface
+The calculator window has a title "Calculator" and a light blue background (#ADD8E6).
+The entry field is a single-line text box where users can input numbers and operators.
+The buttons are arranged in a 4x4 grid, with each button having a width of 5 characters and a font size of 14.
+Button Functionality
+When a digit button (0-9) is clicked, the corresponding digit is appended to the entry field.
+When an operator button (+, -, *, /) is clicked, the corresponding operator is appended to the entry field.
+When the equals button (=) is clicked, the calculator evaluates the expression in the entry field using the eval() function and displays the result in the entry field. If an error occurs during evaluation (e.g., division by zero), the calculator displays "Error" in the entry field.
+Error Handling
+The calculator catches any exceptions that occur during the evaluation of the expression in the entry field and displays "Error" in the entry field.
+Limitations:
 
-        for button in buttons:
-            btn = tk.Button(master, text=button, width=5, font=("Arial", 14), relief="raised", 
-                            command=lambda button=button: self.click_button(button))
-            btn.grid(row=row_val, column=col_val, padx=5, pady=5)
-            col_val += 1
-            if col_val > 3:
-                col_val = 0
-                row_val += 1
-
-    def click_button(self, button):
-        if button == '=':
-            try:
-                result = eval(self.entry.get())
-                self.entry.delete(0, tk.END)
-                self.entry.insert(tk.END, result)
-            except Exception as e:
-                self.entry.delete(0, tk.END)
-                self.entry.insert(tk.END, "Error")
-        else:
-            self.entry.insert(tk.END, button)
-
-root = tk.Tk()
-my_calculator = Calculator(root)
-root.mainloop()
+This calculator does not support advanced mathematical operations, such as exponentiation, roots, or trigonometric functions.
+The calculator does not have a clear or backspace button, so users cannot easily correct mistakes or clear the entry field.
+The calculator does not handle multiple decimal points or invalid input (e.g., consecutive operators).
+Overall, this is a basic calculator implementation that can perform simple arithmetic operations. With additional features and error handling, it could be developed into a more comprehensive calculator application.
